@@ -33,3 +33,10 @@ optional arguments:
   -l {en-US,ja-JP}, --meta-lang {en-US,ja-JP}
                         Metadata language.
 ```
+
+**how to use pindah**
+```
+cd MQ-DL-Reborn 
+after that 
+type bash pindah.sh
+```

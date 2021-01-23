@@ -37,6 +37,5 @@ optional arguments:
 **how to use pindah**
 ```
 cd MQ-DL-Reborn 
-after that 
-type bash pindah.sh
+bash pindah.sh
 ```

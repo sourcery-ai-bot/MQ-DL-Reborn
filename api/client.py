@@ -51,7 +51,7 @@ class Client():
         )
         return j['id']
 
-    def get_track_meta(self, alb_id, lang):
+    def get_tracks_meta(self, alb_id, lang):
         params = {
             "catalog": "JP_MORAQUALITAS",
             "lang": lang,

@@ -1,6 +1,5 @@
 import requests
 
-
 class Client():
 
 	def __init__(self):	

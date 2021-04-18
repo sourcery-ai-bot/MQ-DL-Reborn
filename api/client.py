@@ -169,9 +169,8 @@ class Client():
 		return plist_meta[0]		
 		
 	def get_cover(self, alb_id, dim):
-		alb_cov = "{0}imageserver/v2/albums/{1}/images/{2}x{2}.jpg".format(
+		return "{0}imageserver/v2/albums/{1}/images/{2}x{2}.jpg".format(
 			self.bases[0], alb_id, dim)
-		return alb_cov
 
 	def get_tra_stream(self, brate, fmt, tra_id):
 		params = {

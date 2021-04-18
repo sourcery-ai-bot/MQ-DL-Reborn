@@ -50,7 +50,7 @@ def process_urls(urls):
 			txt_paths.append(url)
 		else:
 			fixed = fix(url)
-			if not fixed in all_fixed:
+			if fixed not in all_fixed:
 				all_fixed.append(fixed)
 	return all_fixed
 
@@ -169,10 +169,7 @@ def check_url(url):
 		if url_type[2] == True:
 			_id = resolve_ids(match, groups_len)
 		else:
-			if groups_len == 0:
-				_id = None
-			else:
-				_id = match.group(groups_len)
+			_id = None if groups_len == 0 else match.group(groups_len)
 		media_type = url_type[1]
 		break
 	if match:
@@ -362,7 +359,7 @@ def iter_track(tra_src_meta, alb_path, total, cov_path, alb_id=None, cov=True, a
 				print('Track isn\'t allowed to be streamed.')
 				continue
 			specs = query_quals(track['formats'] + track['losslessFormats'])
-			if alb_meta == None:
+			if alb_meta is None:
 				alb_id = track['albumId']
 				alb_src_meta = client.get_alb_meta(alb_id)
 				alb_meta = parse_meta(alb_src_meta, total=total)
@@ -391,9 +388,8 @@ def iter_track(tra_src_meta, alb_path, total, cov_path, alb_id=None, cov=True, a
 				os.rename(pre_path, post_path)
 			except OSError:
 				err('Failed to rename track.')
-			if cov_path != None:
-				if cov == False or cfg['keep_cover'] == False:
-					os.remove(cov_path)
+			if cov_path != None and (cov == False or cfg['keep_cover'] == False):
+				os.remove(cov_path)
 		except Exception:
 			err('Track failed.')
 
@@ -415,7 +411,7 @@ def album(alb_id, template=''):
 def artist(art_id):
 	artist, art_ids = get_artist_meta(art_id)
 	print(artist)
-	if art_ids == None:
+	if art_ids is None:
 		print("Artist either doesn't have any albums or they have been filtered out.")
 		return
 	template = parse_template(
@@ -504,7 +500,7 @@ if __name__ == "__main__":
 	for num, url in enumerate(cfg['urls'], 1):
 		print("\nItem {} of {}:".format(num, total))
 		media_type, _id = check_url(url)
-		if media_type == None:
+		if media_type is None:
 			print("Invalid URL:", url)
 			continue
 		try:
